@@ -38,7 +38,7 @@ def make_cert(netid, pubkey, ca_key = ECE422_CA_KEY, serial=x509.random_serial_n
     builder = builder.not_valid_after (datetime.datetime(2017, 9, 20))
     builder = builder.subject_name(x509.Name([
         x509.NameAttribute(NameOID.COMMON_NAME, unicode(netid)),
-        x509.NameAttribute(NameOID.PSEUDONYM, u'unused'),
+        x509.NameAttribute(NameOID.PSEUDONYM, u'unused555555555555555555555555555555555555555555555555555555555555'),
         x509.NameAttribute(NameOID.COUNTRY_NAME, u'US'),
         x509.NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, u'Illinois'),
     ]))
