@@ -1,2 +1,7 @@
+### Universal for all MP folders ###
 partners.txt
 grade_report*
+*.pyc
+
+### Crytography-I ###
+prefix
