@@ -1,7 +1,23 @@
 ### Universal for all MP folders ###
+####################################
 partners.txt
-grade_report*
-*.pyc
+*grade*.txt
+.svn/
+
+### Course grouping specifics ###
+#################################
+*-I/*.pyc
+*-N/*.txt
+*-N/obj/
+
+### Application Security-I ###
+cookie
+setcookie
+2.[1,2]*[!a-zA-Z]
+
+### Sample HTTP-N ###
+http_client
+http_server
 
 ### Crytography-I ###
 prefix

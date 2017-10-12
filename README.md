@@ -3,6 +3,10 @@
 ECE 422/CS 461 MPs '-I'  
 Partner: Jason Cokkinias (jcokki2@illinois.edu)  
 Fall 2017 UofI  
+###### Security I :
+ECE/CS 438 MPs '-N'  
+Partner: Sam Okrent (sokrent2@illinois.edu)  
+Fall 2017 UofI  
 ###### Security II :
 ECE 424/CS 463 MPs '-II'  
 ###### Security Lab :
