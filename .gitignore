@@ -15,7 +15,7 @@ cookie
 setcookie
 2.[1,2]*[!a-zA-Z]
 
-### Sample HTTP-N ###
+### Basic HTTP-N ###
 http_client
 http_server
 
@@ -23,3 +23,7 @@ http_server
 prefix
 sol_1.*.txt
 sol_1.*.hex
+
+### Reliable UDP-N ###
+reliable_sender
+reliable_receiver
