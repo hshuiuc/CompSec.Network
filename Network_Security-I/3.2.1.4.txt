@@ -1,0 +1,14 @@
+# example content
+# ftp
+# telnet
+# smtp
+# pop3
+ssh
+ftp
+http
+https
+tmesis-upshot
+dhcps
+ntp
+netbios-ns
+netbios-dgm
