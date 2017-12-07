@@ -3,6 +3,7 @@
 partners.txt
 *grade*.txt
 .svn/
+.DS_Store
 
 ### Course grouping specifics ###
 #################################
