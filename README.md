@@ -1,4 +1,3 @@
-# Computer Security & Networking
 ###### Security I :
 ECE 422/CS 461 MPs '-I'  
 Partner: Jason Cokkinias (jcokki2@illinois.edu)  
